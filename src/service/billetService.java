@@ -17,9 +17,12 @@ import models.Billet;
  */
 public class billetService implements iBillet {
 
-    private final EntityManager em;
+    private EntityManager em;
     public billetService() {
-        em = EntityManagerUtil.getEMF().createEntityManager(); 
+        this.em = EntityManagerUtil.getEMF().createEntityManager(); 
+    }
+    public void billetServicee() {
+        em = EntityManagerUtil.getEMF().createEntityManager();
     }
     
 
@@ -36,7 +39,7 @@ public class billetService implements iBillet {
             }
             throw new RuntimeException("Error adding billet: " + ex.getMessage());
         } finally {
-            em.close();
+            //em.close();
         }
     }
 
@@ -45,7 +48,7 @@ public class billetService implements iBillet {
         try {
             return em.find(Billet.class, billetId);
         } finally {
-            em.close();
+           // em.close();
         }
     }
 
@@ -55,14 +58,16 @@ public class billetService implements iBillet {
             TypedQuery<Billet> query = em.createQuery("SELECT b FROM Billet b", Billet.class);
             return query.getResultList();
         } finally {
-            em.close();
+            //em.close();
         }
     }
 
     @Override
     public void updateBillet(Billet billet) {
+        em = EntityManagerUtil.getEMF().createEntityManager();
         EntityTransaction et = em.getTransaction();
         try {
+
             et.begin();
             em.merge(billet);
             et.commit();
@@ -72,7 +77,7 @@ public class billetService implements iBillet {
             }
             throw new RuntimeException("Error updating billet: " + ex.getMessage());
         } finally {
-            em.close();
+            //em.close();
         }
     }
 

@@ -5,16 +5,15 @@
 package models;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -35,6 +34,7 @@ public class Attraction implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID_Attraction")
     private Integer iDAttraction;
@@ -52,26 +52,22 @@ public class Attraction implements Serializable {
     private String horairesFonctionnement;
     @Column(name = "Etat")
     private String etat;
-    @OneToMany(mappedBy = "iDAttraction", fetch = FetchType.LAZY)
-    private List<Horaire> horaireList;
-    @OneToMany(mappedBy = "attraction")
-    private List<Billet> billetList;
-
 
     public Attraction() {
     }
 
-    public Attraction(Integer iDAttraction) {
-        this.iDAttraction = iDAttraction;
-    }
-
-    public Attraction(String nom, String description, int capacite1, int duree, String Horaires) {
+    public Attraction(String nom, String description, Integer capacite, Integer duree, String horairesFonctionnement) {
         this.nom = nom;
         this.description = description;
-        this.capacite = capacite1;
         this.dureeminutes = duree;
-        this.horairesFonctionnement = Horaires;
-        this.etat = "hors service";
+        this.capacite = capacite;
+        this.horairesFonctionnement = horairesFonctionnement;
+        this.etat = "Hors Service";
+    }
+
+    public Attraction(Integer iDAttraction, String nom) {
+        this.iDAttraction = iDAttraction;
+        this.nom = nom;
     }
 
     public Integer getIDAttraction() {
@@ -130,22 +126,6 @@ public class Attraction implements Serializable {
         this.etat = etat;
     }
 
-    public List<Horaire> getHoraireList() {
-        return horaireList;
-    }
-
-    public void setHoraireList(List<Horaire> horaireList) {
-        this.horaireList = horaireList;
-    }
-
-    public List<Billet> getBilletList() {
-        return billetList;
-    }
-
-    public void setBilletList(List<Billet> billetList) {
-        this.billetList = billetList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -168,7 +148,7 @@ public class Attraction implements Serializable {
 
     @Override
     public String toString() {
-        return nom;
+        return "models.Attraction[ iDAttraction=" + iDAttraction + " ]";
     }
     
 }

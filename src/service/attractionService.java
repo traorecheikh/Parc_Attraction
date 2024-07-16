@@ -42,7 +42,7 @@ public class attractionService implements iAttraction {
             }
             throw new RuntimeException("Error adding attraction: " + ex.getMessage());
         } finally {
-            em.close();
+           // em.close();
         }
     }
 
@@ -54,7 +54,7 @@ public class attractionService implements iAttraction {
         }
             return em.find(Attraction.class, attractionId);
         } finally {
-            em.close();
+           // em.close();
         }
     }
     @Override
@@ -65,7 +65,7 @@ public class attractionService implements iAttraction {
             query.setParameter("nom", nom);
             return query.getSingleResult();
         } finally {
-            em.close();
+            //em.close();
         }
     }
 
@@ -76,7 +76,7 @@ public class attractionService implements iAttraction {
             TypedQuery<Attraction> query = em.createQuery("SELECT a FROM Attraction a", Attraction.class);
             return query.getResultList();
         } finally {
-            em.close();
+           // em.close();
         }
     }
 
@@ -93,7 +93,7 @@ public class attractionService implements iAttraction {
             }
             throw new RuntimeException("Error updating attraction: " + ex.getMessage());
         } finally {
-            em.close();
+            //em.close();
         }
     }
 
@@ -111,12 +111,12 @@ public class attractionService implements iAttraction {
             }
             throw new RuntimeException("Error deleting attraction: " + ex.getMessage());
         } finally {
-            em.close();
+            //em.close();
         }
     }
     
     public void closeEntityManagerFactory() {
-        em.close();
+        //em.close();
     }
     
 }

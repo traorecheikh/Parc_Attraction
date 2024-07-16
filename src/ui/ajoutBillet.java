@@ -4,6 +4,7 @@
  */
 package ui;
 
+import static java.lang.Integer.parseInt;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -25,13 +26,10 @@ public class ajoutBillet extends javax.swing.JFrame {
      */
     private final attractionService as = new attractionService();
     private final billetService bs = new billetService();
-    private final List<Attraction> attractions;
     public ajoutBillet() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-        attractions = as.getAllAttractions();
-        fillAttractionsComboBox();
     }
 
     /**
@@ -51,8 +49,6 @@ public class ajoutBillet extends javax.swing.JFrame {
         typeField = new javax.swing.JTextField();
         validerButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        attractionComboBox = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,11 +76,6 @@ public class ajoutBillet extends javax.swing.JFrame {
             }
         });
 
-        attractionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Attraction");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -95,11 +86,7 @@ public class ajoutBillet extends javax.swing.JFrame {
                 .addGap(257, 257, 257))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(246, 246, 246)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(attractionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -109,7 +96,7 @@ public class ajoutBillet extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(typeField, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(validerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,15 +110,11 @@ public class ajoutBillet extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(typeField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(attractionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(37, 37, 37)
                 .addComponent(validerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,15 +143,10 @@ public class ajoutBillet extends javax.swing.JFrame {
         return;
     }
 
-    String selectedAttractionName = (String) attractionComboBox.getSelectedItem();
-    Attraction selectedAttraction = as.getAttractionByNom(selectedAttractionName);
-
-  // Replace with actual ID retrieval logic
 
     try {
-        double prix = Double.parseDouble(prixstr);
-        Billet billet = new Billet(type, prix, selectedAttraction.getIDAttraction());
-        // Assuming bs.addBillet(billet) adds the billet to your persistence context
+        int prix = parseInt(prixstr);
+        Billet billet = new Billet(type, prix);
         bs.addBillet(billet);
         
         JOptionPane.showMessageDialog(this, "Billet ajouté avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
@@ -176,7 +154,7 @@ public class ajoutBillet extends javax.swing.JFrame {
 
     } catch (NumberFormatException ex) {
         JOptionPane.showMessageDialog(this, "Prix doit être un nombre valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
-    }        // TODO add your handling code here:
+    }
     }//GEN-LAST:event_validerButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -187,13 +165,6 @@ public class ajoutBillet extends javax.swing.JFrame {
     private void clearFields() {
         typeField.setText("");
         prixField.setText("");
-    }
-        private void fillAttractionsComboBox() {
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        for (Attraction attraction : attractions) {
-            model.addElement(attraction.getNom());
-        }
-        attractionComboBox.setModel(model);
     }
     /**
      * @param args the command line arguments
@@ -231,12 +202,10 @@ public class ajoutBillet extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> attractionComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField prixField;
     private javax.swing.JTextField typeField;

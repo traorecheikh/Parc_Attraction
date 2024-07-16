@@ -4,32 +4,27 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/adminPanel.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/HorairesUtil.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/ajoutClient.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/ajoutAttraction.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/models/Client.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/models/Horaire.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/listerClient.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/affecterEmoloyee.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/listerBillet.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/employeG.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/ajoutBillet.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/service/attractionService.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/connexion.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/affecterEmploye.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/clientG.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/activerUi.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/models/Utilisateur.java</file>
             <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/service/billetService.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/dao/iAttraction.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/affecterBillet.java</file>
             <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/service/employeService.java</file>
             <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/service/clientService.java</file>
             <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/billetG.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/models/Employe.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/ajoutAttraction.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/models/Client.java</file>
             <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/models/Attraction.java</file>
-            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/ajouterEmploye.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/models/Employe.java</file>
             <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/service/EntityManagerUtil.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/listerHoraire.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/listerClient.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/affecterEmoloyee.java</file>
             <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/listerEmploye.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/listerBillet.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/ajoutBillet.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/service/attractionService.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/connexion.java</file>
             <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/models/Billet.java</file>
+            <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/affecterEmploye.java</file>
             <file>file:/C:/Users/Cheikh/Documents/NetBeansProjects/aparc/src/ui/inscription.java</file>
         </group>
     </open-files>

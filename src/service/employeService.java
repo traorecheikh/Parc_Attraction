@@ -92,7 +92,7 @@ public class employeService implements iEmploye {
            e.printStackTrace(); // Handle exception appropriately
            return false;
        } finally {
-           EM.close(); // Close EntityManager after use (if not managed by container)
+           //EM.close(); // Close EntityManager after use (if not managed by container)
        }
    }
     @Override
@@ -101,7 +101,7 @@ public class employeService implements iEmploye {
             TypedQuery<Horaire> query = EM.createQuery("SELECT b FROM Horaire b", Horaire.class);
             return query.getResultList();
         } finally {
-            EM.close();
+            //EM.close();
         }
     }
 

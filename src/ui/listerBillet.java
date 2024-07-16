@@ -120,8 +120,7 @@ public class listerBillet extends javax.swing.JFrame {
                 billet.getDateEmission(),
                 billet.getDateReservation(),
                 billet.getEtat(),
-                billet.getIDClient(),
-                billet.getIDAttraction()
+                billet.getIDClient()
             });
         }
     }

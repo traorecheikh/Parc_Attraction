@@ -17,8 +17,11 @@ import models.Attraction;
  */
 public class attractionService implements iAttraction {
     
-    private final EntityManager em;
+    private EntityManager em;
     public attractionService() {
+        em = EntityManagerUtil.getEMF().createEntityManager();
+    }
+    public void attractionServicee() {
         em = EntityManagerUtil.getEMF().createEntityManager();
     }
     
@@ -27,6 +30,9 @@ public class attractionService implements iAttraction {
     public void addAttraction(Attraction attraction) {
         EntityTransaction et = em.getTransaction();
         try {
+         if (em== null || !em.isOpen()) {
+            attractionServicee();
+        }
             et.begin();
             em.persist(attraction);
             et.commit();
@@ -43,11 +49,26 @@ public class attractionService implements iAttraction {
     @Override
     public Attraction getAttractionById(int attractionId) {
         try {
+          if (em== null || !em.isOpen()) {
+            attractionServicee();
+        }
             return em.find(Attraction.class, attractionId);
         } finally {
             em.close();
         }
     }
+    @Override
+    public Attraction getAttractionByNom(String nom) {
+        try {
+            attractionServicee();
+            TypedQuery<Attraction> query = em.createQuery("SELECT a FROM Attraction a WHERE a.nom = :nom", Attraction.class);
+            query.setParameter("nom", nom);
+            return query.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
 
     @Override
     public List<Attraction> getAllAttractions() {

@@ -54,8 +54,9 @@ public class Attraction implements Serializable {
     private String etat;
     @OneToMany(mappedBy = "iDAttraction", fetch = FetchType.LAZY)
     private List<Horaire> horaireList;
-    @OneToMany(mappedBy = "iDAttraction", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "attraction")
     private List<Billet> billetList;
+
 
     public Attraction() {
     }
@@ -64,9 +65,13 @@ public class Attraction implements Serializable {
         this.iDAttraction = iDAttraction;
     }
 
-    public Attraction(Integer iDAttraction, String nom) {
-        this.iDAttraction = iDAttraction;
+    public Attraction(String nom, String description, int capacite1, int duree, String Horaires) {
         this.nom = nom;
+        this.description = description;
+        this.capacite = capacite1;
+        this.dureeminutes = duree;
+        this.horairesFonctionnement = Horaires;
+        this.etat = "hors service";
     }
 
     public Integer getIDAttraction() {
@@ -163,7 +168,7 @@ public class Attraction implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Attraction[ iDAttraction=" + iDAttraction + " ]";
+        return nom;
     }
     
 }

@@ -14,6 +14,7 @@ import models.Attraction;
 public interface iAttraction {
     void addAttraction(Attraction attraction);
     Attraction getAttractionById(int attractionId);
+    public Attraction getAttractionByNom(String nom);
     List<Attraction> getAllAttractions();
     void updateAttraction(Attraction attraction);
     void deleteAttraction(Attraction attraction);

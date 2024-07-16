@@ -79,7 +79,12 @@ public class adminPanel extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(204, 255, 204));
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton5.setText("Gestion Compte");
+        jButton5.setText("Voir Horaire");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -157,6 +162,12 @@ public class adminPanel extends javax.swing.JFrame {
         blt.setVisible(true);
         dispose();       // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        listerHoraire hr = new listerHoraire();
+        hr.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

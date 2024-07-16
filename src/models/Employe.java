@@ -125,8 +125,14 @@ public class Employe implements Serializable {
         this.salaire = salaire;
     }
 
-    public String getDisponibilite() {
-        return disponibilite;
+    
+    
+    public boolean getDisponibilite() {
+        if ("disponible".equals(this.disponibilite))
+        {
+            return true;
+        }
+        return false;
     }
 
     public void setDisponibilite(String disponibilite) {

@@ -6,6 +6,7 @@ package dao;
 
 import java.util.List;
 import models.Employe;
+import models.Horaire;
 
 /**
  *
@@ -23,5 +24,6 @@ public interface iEmploye {
 
     // Delete
     public void deleteEmploye(int employeId);
+    public List<Horaire> getAllHoraire();
     
 }

@@ -27,9 +27,18 @@ public class ajoutBillet extends javax.swing.JFrame {
     private final attractionService as = new attractionService();
     private final billetService bs = new billetService();
     public ajoutBillet() {
-        initComponents();
-        setResizable(false);
-        setLocationRelativeTo(null);
+        if (Session.getInstance().getUsername() == null) {
+            JOptionPane.showMessageDialog(this, "Vous devez etre connecter pour acceder a cette page", "Erreur", JOptionPane.ERROR_MESSAGE);
+            connexion loginPage = new connexion();
+            loginPage.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            initComponents();
+            setResizable(false);
+            setLocationRelativeTo(null);
+        }
     }
 
     /**

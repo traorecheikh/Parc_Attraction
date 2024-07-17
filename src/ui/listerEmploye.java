@@ -22,10 +22,19 @@ public class listerEmploye extends javax.swing.JFrame {
      */
     private final employeService es = new employeService();
     public listerEmploye() {
+     if (Session.getInstance().getUsername() == null) {
+            JOptionPane.showMessageDialog(this, "Vous devez etre connecter pour acceder a cette page", "Erreur", JOptionPane.ERROR_MESSAGE);
+            connexion loginPage = new connexion();
+            loginPage.setVisible(true);
+            this.dispose();
+        }
+     else
+     {
         initComponents();
         loadEmployeData();
         setResizable(false);
         setLocationRelativeTo(null);
+     }
     }
 
     /**

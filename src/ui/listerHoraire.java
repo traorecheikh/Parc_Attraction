@@ -5,6 +5,7 @@
 package ui;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Horaire;
 import service.billetService;
@@ -21,10 +22,19 @@ public class listerHoraire extends javax.swing.JFrame {
      */
     private final employeService es = new employeService();
     public listerHoraire() {
-        initComponents();
-        loadHoraireData();
-        setResizable(false);
-        setLocationRelativeTo(null);
+       if (Session.getInstance().getUsername() == null) {
+            JOptionPane.showMessageDialog(this, "Vous devez etre connecter pour acceder a cette page", "Erreur", JOptionPane.ERROR_MESSAGE);
+            connexion loginPage = new connexion();
+            loginPage.setVisible(true);
+            this.dispose();
+        }
+       else
+       {
+            initComponents();
+            loadHoraireData();
+            setResizable(false);
+            setLocationRelativeTo(null);
+       }
     }
 
     /**

@@ -152,12 +152,11 @@ public class inscription extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiderActionPerformed
-             // Valider button action
+
         String username = usernameField.getText();
         String email = emailField.getText();
         String password = String.valueOf(jPasswordField.getPassword());
 
-        // Perform validation (you can add more complex validation as needed)
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -206,6 +205,7 @@ private String crypterMotDePasse(String motDePasse) throws NoSuchAlgorithmExcept
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         connexion cn = new connexion();
         cn.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

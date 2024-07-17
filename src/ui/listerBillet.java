@@ -4,7 +4,9 @@
  */
 package ui;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Billet;
 import models.Client;
@@ -21,10 +23,19 @@ public class listerBillet extends javax.swing.JFrame {
      */
     private final billetService bs = new billetService();
     public listerBillet() {
-        initComponents();
-        loadBilletData();
-        setResizable(false);
-        setLocationRelativeTo(null);
+       if (Session.getInstance().getUsername() == null) {
+            JOptionPane.showMessageDialog(this, "Vous devez etre connecter pour acceder a cette page", "Erreur", JOptionPane.ERROR_MESSAGE);
+            connexion loginPage = new connexion();
+            loginPage.setVisible(true);
+            this.dispose();
+        }
+       else
+       {
+            initComponents();
+            loadBilletData();
+            setResizable(false);
+            setLocationRelativeTo(null);
+       }
     }
 
     /**
@@ -45,13 +56,13 @@ public class listerBillet extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "idBillet", "typeBillet", "prix", "date emission", "date utilisation", "etat", "nom client", "nom attraction", "date reservation", "heure reservation"
+                "idBillet", "typeBillet", "prix", "date emission", "date utilisation", "etat", "nom client", "date reservation", "heure reservation"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -109,16 +120,17 @@ public class listerBillet extends javax.swing.JFrame {
 
       private void loadBilletData() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // Clear existing data
-
+        model.setRowCount(0);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         List<Billet> billets = bs.getAllBillets();
         for (Billet billet : billets) {
             model.addRow(new Object[]{
                 billet.getIDBillet(),
                 billet.getTypeBillet(),
                 billet.getPrix(),
-                billet.getDateEmission(),
-                billet.getDateReservation(),
+                dateFormat.format(billet.getDateEmission()),
+                dateFormat.format(billet.getDateReservation()),
                 billet.getEtat(),
                 billet.getIDClient()
             });

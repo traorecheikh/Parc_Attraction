@@ -4,6 +4,8 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Cheikh
@@ -14,9 +16,18 @@ public class billetG extends javax.swing.JFrame {
      * Creates new form billetG
      */
     public billetG() {
-        initComponents();
-        setResizable(false);
-        setLocationRelativeTo(null);
+       if (Session.getInstance().getUsername() == null) {
+            JOptionPane.showMessageDialog(this, "Vous devez etre connecter pour acceder a cette page", "Erreur", JOptionPane.ERROR_MESSAGE);
+            connexion loginPage = new connexion();
+            loginPage.setVisible(true);
+            this.dispose();
+        }
+       else
+       {
+            initComponents();
+            setResizable(false);
+            setLocationRelativeTo(null);
+       }
     }
 
     /**
@@ -30,7 +41,7 @@ public class billetG extends javax.swing.JFrame {
 
         jPanel4 = new javax.swing.JPanel();
         ajouterBillet = new javax.swing.JButton();
-        listerClient = new javax.swing.JButton();
+        listerBillet = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
@@ -43,10 +54,10 @@ public class billetG extends javax.swing.JFrame {
             }
         });
 
-        listerClient.setText("Lister Client");
-        listerClient.addActionListener(new java.awt.event.ActionListener() {
+        listerBillet.setText("Lister Billet");
+        listerBillet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listerClientActionPerformed(evt);
+                listerBilletActionPerformed(evt);
             }
         });
 
@@ -69,7 +80,7 @@ public class billetG extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(281, 281, 281)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(listerClient, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(listerBillet, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ajouterBillet, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -85,7 +96,7 @@ public class billetG extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(ajouterBillet, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
-                .addComponent(listerClient, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(listerBillet, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -111,11 +122,10 @@ public class billetG extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_ajouterBilletActionPerformed
 
-    private void listerClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listerClientActionPerformed
-        listerClient client = new listerClient();
-        client.setVisible(true);
+    private void listerBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listerBilletActionPerformed
+        new listerBillet().setVisible(true);
         dispose();
-    }//GEN-LAST:event_listerClientActionPerformed
+    }//GEN-LAST:event_listerBilletActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         adminPanel admin = new adminPanel();
@@ -163,6 +173,6 @@ public class billetG extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JButton listerClient;
+    private javax.swing.JButton listerBillet;
     // End of variables declaration//GEN-END:variables
 }

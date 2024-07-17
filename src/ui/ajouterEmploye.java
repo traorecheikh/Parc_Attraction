@@ -19,9 +19,18 @@ public class ajouterEmploye extends javax.swing.JFrame {
      */
     private final employeService es = new employeService();
     public ajouterEmploye() {
+      if (Session.getInstance().getUsername() == null) {
+            JOptionPane.showMessageDialog(this, "Vous devez etre connecter pour acceder a cette page", "Erreur", JOptionPane.ERROR_MESSAGE);
+            connexion loginPage = new connexion();
+            loginPage.setVisible(true);
+            this.dispose();
+        }
+      else
+      {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
+      }
     }
 
     /**

@@ -75,7 +75,7 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="10" rowCount="4">
+                  <Table columnCount="9" rowCount="4">
                     <Column editable="true" title="idBillet" type="java.lang.Object"/>
                     <Column editable="true" title="typeBillet" type="java.lang.Object"/>
                     <Column editable="true" title="prix" type="java.lang.Object"/>
@@ -83,18 +83,12 @@
                     <Column editable="true" title="date utilisation" type="java.lang.Object"/>
                     <Column editable="true" title="etat" type="java.lang.Object"/>
                     <Column editable="true" title="nom client" type="java.lang.Object"/>
-                    <Column editable="true" title="nom attraction" type="java.lang.Object"/>
                     <Column editable="true" title="date reservation" type="java.lang.Object"/>
                     <Column editable="true" title="heure reservation" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>

@@ -43,7 +43,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="281" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="listerClient" alignment="1" min="-2" pref="157" max="-2" attributes="0"/>
+                              <Component id="listerBillet" alignment="1" min="-2" pref="157" max="-2" attributes="0"/>
                               <Component id="ajouterBillet" alignment="1" min="-2" pref="157" max="-2" attributes="0"/>
                               <Component id="jButton9" alignment="1" min="-2" pref="157" max="-2" attributes="0"/>
                           </Group>
@@ -65,7 +65,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="ajouterBillet" min="-2" pref="37" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="listerClient" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="listerBillet" min="-2" pref="37" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="jButton9" min="-2" pref="37" max="-2" attributes="0"/>
                   <EmptySpace pref="31" max="32767" attributes="0"/>
@@ -82,12 +82,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ajouterBilletActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="listerClient">
+        <Component class="javax.swing.JButton" name="listerBillet">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Lister Client"/>
+            <Property name="text" type="java.lang.String" value="Lister Billet"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listerClientActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listerBilletActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton9">

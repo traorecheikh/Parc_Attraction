@@ -4,6 +4,8 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Cheikh
@@ -14,9 +16,19 @@ public class clientG extends javax.swing.JFrame {
      * Creates new form clientG
      */
     public clientG() {
-        initComponents();
-        setResizable(false);
-        setLocationRelativeTo(null);
+       if (Session.getInstance().getUsername() == null) {
+            JOptionPane.showMessageDialog(this, "Vous devez etre connecter pour acceder a cette page", "Erreur", JOptionPane.ERROR_MESSAGE);
+            connexion loginPage = new connexion();
+            loginPage.setVisible(true);
+            this.dispose();
+        }
+       else
+           
+       {
+            initComponents();
+            setResizable(false);
+            setLocationRelativeTo(null);
+       }
     }
 
     /**

@@ -162,13 +162,15 @@ public class affecterEmploye extends javax.swing.JFrame {
     private void validerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerButtonActionPerformed
     String selectedAttractionName = (String) attractionComboBox.getSelectedItem();
     Attraction selectedAttraction = as.getAttractionByNom(selectedAttractionName);
-    boolean success = es.assignEmployeToAttraction(selectedEmploye, selectedAttraction);
-
-    if (success) {
+    boolean success = false;
+        if(selectedEmploye.getDisponibilite())
+        {
+            success = es.assignEmployeToAttraction(selectedEmploye, selectedAttraction);
+        } 
+        if (success) {
         JOptionPane.showMessageDialog(this, "employe affecter avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
         dispose();
     } else {
-        // Handle failure, possibly show an error message
     }
     }//GEN-LAST:event_validerButtonActionPerformed
 
@@ -191,7 +193,6 @@ public class affecterEmploye extends javax.swing.JFrame {
         }
         attractionComboBox.setModel(model);
 
-        // Assuming horaireField is where you display the attraction's schedule
         if (!attractions.isEmpty()) {
             Attraction firstAttraction = attractions.get(0);
             horaireField.setText(firstAttraction.getHorairesFonctionnement());

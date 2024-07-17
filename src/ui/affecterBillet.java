@@ -162,7 +162,7 @@ public class affecterBillet extends javax.swing.JFrame {
         bs.updateBillet(billet);
         loadBillets();
         
-        JOptionPane.showMessageDialog(this, "Billet vendu.");        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Billet vendu.");
     }//GEN-LAST:event_jButton2ActionPerformed
 
         private void loadBillets() {

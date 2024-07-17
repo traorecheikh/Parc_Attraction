@@ -65,7 +65,6 @@ public class employeService implements iEmploye {
 
     public boolean assignEmployeToAttraction(Employe employe, Attraction attraction) {// Obtain EntityManager instance from context or injection
 
-       // Start a transaction
        EntityTransaction transaction = EM.getTransaction();
        transaction.begin();
 
@@ -79,6 +78,7 @@ public class employeService implements iEmploye {
            horaire.setIDAttraction(attraction);
            horaire.setDateDebut(new Date());
            horaire.setDateFin(null);
+           attraction.setEtat("en service");
 
            EM.persist(horaire);
            EM.merge(employe);

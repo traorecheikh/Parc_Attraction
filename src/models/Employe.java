@@ -128,11 +128,7 @@ public class Employe implements Serializable {
     
     
     public boolean getDisponibilite() {
-        if ("disponible".equals(this.disponibilite))
-        {
-            return true;
-        }
-        return false;
+        return "disponible".equalsIgnoreCase(this.disponibilite);
     }
 
     public void setDisponibilite(String disponibilite) {

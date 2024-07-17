@@ -21,10 +21,19 @@ public class activerUi extends javax.swing.JFrame {
      */
     private final utilisateurService us = new utilisateurService();
     public activerUi() {
-        initComponents();
-        loadUserData();
-        setResizable(false);
-        setLocationRelativeTo(null);
+        if (Session.getInstance().getUsername() == null) {
+            JOptionPane.showMessageDialog(this, "Vous devez etre connecter pour acceder a cette page", "Erreur", JOptionPane.ERROR_MESSAGE);
+            connexion loginPage = new connexion();
+            loginPage.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            initComponents();
+            loadUserData();
+            setResizable(false);
+            setLocationRelativeTo(null);
+        }
     }
 
     /**

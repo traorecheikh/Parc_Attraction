@@ -4,8 +4,10 @@
  */
 package ui;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Billet;
@@ -58,13 +60,13 @@ public class affecterBillet extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "idBillet", "typeBillet", "prix", "date emission", "date utilisation", "etat", "nom client", "nom attraction", "date reservation", "heure reservation"
+                "idBillet", "typeBillet", "prix", "date emission", "date utilisation", "etat", "nom client", "date reservation", "heure reservation"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -92,9 +94,9 @@ public class affecterBillet extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(234, 234, 234)
+                .addGap(270, 270, 270)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -154,13 +156,14 @@ public class affecterBillet extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ce billet a déjà été utilisé.");
             return;
         }
+        loadBillets();
         billet.setIDClient(client);
         billet.setEtat("utilisé");
         billet.setDateReservation(new Date());
         billet.setHeureReservation(new Date());
+        billet.setDateUtilisation(new Date());
         
         bs.updateBillet(billet);
-        loadBillets();
         
         JOptionPane.showMessageDialog(this, "Billet vendu.");
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -168,6 +171,8 @@ public class affecterBillet extends javax.swing.JFrame {
         private void loadBillets() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("E dd/MM/yyyy", Locale.FRENCH);
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
         List<Billet> billets = bs.getAllBillets();
         for (Billet billet : billets) {
@@ -175,7 +180,12 @@ public class affecterBillet extends javax.swing.JFrame {
                 billet.getIDBillet(),
                 billet.getTypeBillet(),
                 billet.getPrix(),
-                billet.getEtat()
+                billet.getDateEmission(),
+                billet.getDateUtilisation(),
+                billet.getEtat(),
+                billet.getIDClient().getPrenom(),
+                dateFormat.format(billet.getDateReservation()),
+                timeFormat.format(billet.getHeureReservation())
             });
         }
     }

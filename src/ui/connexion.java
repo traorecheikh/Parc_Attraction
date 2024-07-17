@@ -127,7 +127,10 @@ public class connexion extends javax.swing.JFrame {
                 String encryptedPassword = crypterMotDePasse(password);
                 boolean exists = us.validateUser(username, encryptedPassword);
                 if (exists) {
-                    JOptionPane.showMessageDialog(this, "Connexion réussie pour l'utilisateur : " + username, "Succès", JOptionPane.INFORMATION_MESSAGE);
+                    Session.getInstance().setUsername(username);
+                    adminPanel ad = new adminPanel();
+                    this.dispose();
+                    ad.setVisible(true);
                     
                 } else {
                     JOptionPane.showMessageDialog(this, "Nom utilisateur ou mot de passe incorrect", "Erreur", JOptionPane.ERROR_MESSAGE);

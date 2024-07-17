@@ -82,6 +82,7 @@ public class employeService implements iEmploye {
 
            EM.persist(horaire);
            EM.merge(employe);
+           EM.merge(attraction);
 
            transaction.commit(); // Commit the transaction
            return true;

@@ -105,6 +105,13 @@ public class employeService implements iEmploye {
             //EM.close();
         }
     }
+    public List<Horaire> getAllHoraireByEmployeId(int employeId) {
+        TypedQuery<Horaire> query = EM.createQuery("SELECT h FROM Horaire h WHERE h.iDEmploye.iDEmploye = :employeId", Horaire.class);
+        query.setParameter("employeId", employeId);
+        return query.getResultList();
+    }
+
+
 
 
 

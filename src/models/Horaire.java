@@ -46,8 +46,8 @@ public class Horaire implements Serializable {
     @JoinColumn(name = "ID_Attraction", referencedColumnName = "ID_Attraction")
     @ManyToOne(fetch = FetchType.LAZY)
     private Attraction iDAttraction;
+    @ManyToOne
     @JoinColumn(name = "ID_Employe", referencedColumnName = "ID_Employe")
-    @ManyToOne(fetch = FetchType.LAZY)
     private Employe iDEmploye;
 
     public Horaire() {
@@ -119,7 +119,7 @@ public class Horaire implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Horaire[ iDHoraire=" + iDHoraire + " ]";
+        return "";
     }
     
 }

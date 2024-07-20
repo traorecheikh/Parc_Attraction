@@ -15,6 +15,8 @@ public class pageDefaut extends javax.swing.JFrame {
      */
     public pageDefaut() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -98,7 +100,7 @@ public class pageDefaut extends javax.swing.JFrame {
     }//GEN-LAST:event_adminButtonActionPerformed
 
     private void empButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empButtonActionPerformed
-        new listerBillet().setVisible(true);
+        new espaceEmp().setVisible(true);
         dispose();
     }//GEN-LAST:event_empButtonActionPerformed
 

@@ -132,14 +132,13 @@ public class listerEmploye extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int selectedRowIndex = jTable1.getSelectedRow();
         if (selectedRowIndex != -1) {
-            int id = (int) jTable1.getValueAt(selectedRowIndex, 0); // Assuming ID is in the first column
+            int id = (int) jTable1.getValueAt(selectedRowIndex, 0);
             Employe selectedEmploye = es.getEmployeById(id);
-            if (selectedEmploye != null && selectedEmploye.getDisponibilite()) {
+            if (selectedEmploye != null && !selectedEmploye.isDisponible()) {
                 affecterEmploye ae = new affecterEmploye(selectedEmploye);
                 ae.setVisible(true);
                 dispose();
             } else {
-                // Handle case where employee is not available
                 JOptionPane.showMessageDialog(this, "L'employe selectionner n'est pas disponible.", "Disponibility", JOptionPane.WARNING_MESSAGE);
             }
         }

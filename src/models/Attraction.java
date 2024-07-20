@@ -5,6 +5,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -52,17 +54,19 @@ public class Attraction implements Serializable {
     private String horairesFonctionnement;
     @Column(name = "Etat")
     private String etat;
+    @OneToMany(mappedBy = "iDAttraction")
+    private List<Horaire> horaireList;
 
     public Attraction() {
     }
 
-    public Attraction(String nom, String description, Integer capacite, Integer duree, String horairesFonctionnement) {
+    public Attraction(String nom, String description, int capacite, int duree,String horaire) {
+        this.capacite = capacite;
         this.nom = nom;
         this.description = description;
         this.dureeminutes = duree;
-        this.capacite = capacite;
-        this.horairesFonctionnement = horairesFonctionnement;
-        this.etat = "Hors Service";
+        this.horairesFonctionnement = horaire;
+        this.etat = "hors service";
     }
 
     public Attraction(Integer iDAttraction, String nom) {
@@ -124,6 +128,14 @@ public class Attraction implements Serializable {
 
     public void setEtat(String etat) {
         this.etat = etat;
+    }
+
+    public List<Horaire> getHoraireList() {
+        return horaireList;
+    }
+
+    public void setHoraireList(List<Horaire> horaireList) {
+        this.horaireList = horaireList;
     }
 
     @Override

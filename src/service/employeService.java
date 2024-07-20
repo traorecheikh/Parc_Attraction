@@ -36,6 +36,7 @@ public class employeService implements iEmploye {
 
         @Override
         public void addEmploye(Employe employe) {
+            employe.setCarteEmploye(generateCarteEmploye(employe.getNom(),employe.getPrenom()));
             EM.getTransaction().begin();
             EM.persist(employe);
             EM.getTransaction().commit();
@@ -63,7 +64,8 @@ public class employeService implements iEmploye {
             return EM.find(Employe.class, employeId);
         }
 
-    public boolean assignEmployeToAttraction(Employe employe, Attraction attraction) {// Obtain EntityManager instance from context or injection
+    @Override
+    public boolean assignEmployeToAttraction(Employe employe, Attraction attraction) {
 
        EntityTransaction transaction = EM.getTransaction();
        transaction.begin();
@@ -84,16 +86,16 @@ public class employeService implements iEmploye {
            EM.merge(employe);
            EM.merge(attraction);
 
-           transaction.commit(); // Commit the transaction
+           transaction.commit();
            return true;
        } catch (Exception e) {
            if (transaction.isActive()) {
-               transaction.rollback(); // Rollback transaction if there's an exception
+               transaction.rollback();
            }
-           e.printStackTrace(); // Handle exception appropriately
+           e.printStackTrace();
            return false;
        } finally {
-           //EM.close(); // Close EntityManager after use (if not managed by container)
+           //EM.close();
        }
    }
     @Override
@@ -105,10 +107,39 @@ public class employeService implements iEmploye {
             //EM.close();
         }
     }
+    @Override
     public List<Horaire> getAllHoraireByEmployeId(int employeId) {
         TypedQuery<Horaire> query = EM.createQuery("SELECT h FROM Horaire h WHERE h.iDEmploye.iDEmploye = :employeId", Horaire.class);
         query.setParameter("employeId", employeId);
         return query.getResultList();
+    }
+    
+    
+    @Override
+    public String generateCarteEmploye(String nom, String prenom) {
+        Long count = (Long) EM.createQuery("SELECT COUNT(e) FROM Employe e WHERE e.nom = :nom AND e.prenom = :prenom")
+                              .setParameter("nom", nom)
+                              .setParameter("prenom", prenom)
+                              .getSingleResult();
+
+        String carteEmploye = nom + "_" + prenom;
+        if (count > 0) {
+            carteEmploye += "_" + (count + 1);
+        }
+
+        return carteEmploye;
+    }
+    
+    @Override
+     public Employe getEmployeByCarteEmploye(String carteEmploye) {
+        String jpql = "SELECT e FROM Employe e WHERE e.carteEmploye = :carteEmploye";
+        TypedQuery<Employe> query = EM.createQuery(jpql, Employe.class);
+        query.setParameter("carteEmploye", carteEmploye);
+        try {
+            return query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 

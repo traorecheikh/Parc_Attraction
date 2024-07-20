@@ -56,13 +56,13 @@ public class listerBillet extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "idBillet", "typeBillet", "prix", "date emission", "date utilisation", "etat", "nom client", "date reservation", "heure reservation"
+                "idBillet", "typeBillet", "prix", "date utilisation", "etat", "nom client"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -129,10 +129,9 @@ public class listerBillet extends javax.swing.JFrame {
                 billet.getIDBillet(),
                 billet.getTypeBillet(),
                 billet.getPrix(),
-                dateFormat.format(billet.getDateEmission()),
-                dateFormat.format(billet.getDateReservation()),
+                dateFormat.format(billet.getDateUtilisation()),
                 billet.getEtat(),
-                billet.getIDClient()
+                billet.getIDClient().getPrenom()
             });
         }
     }

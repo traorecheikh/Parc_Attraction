@@ -11,11 +11,10 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -36,11 +35,17 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Employe.findByPrenom", query = "SELECT e FROM Employe e WHERE e.prenom = :prenom"),
     @NamedQuery(name = "Employe.findByPoste", query = "SELECT e FROM Employe e WHERE e.poste = :poste"),
     @NamedQuery(name = "Employe.findByDateEmbauche", query = "SELECT e FROM Employe e WHERE e.dateEmbauche = :dateEmbauche"),
-    @NamedQuery(name = "Employe.findBySalaire", query = "SELECT e FROM Employe e WHERE e.salaire = :salaire")})
+    @NamedQuery(name = "Employe.findBySalaire", query = "SELECT e FROM Employe e WHERE e.salaire = :salaire"),
+    @NamedQuery(name = "Employe.findByCarteEmploye", query = "SELECT e FROM Employe e WHERE e.carteEmploye = :carteEmploye")})
 public class Employe implements Serializable {
+
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "Salaire")
+    private int salaire;
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID_Employe")
     private Integer iDEmploye;
@@ -55,27 +60,29 @@ public class Employe implements Serializable {
     @Column(name = "Date_Embauche")
     @Temporal(TemporalType.DATE)
     private Date dateEmbauche;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "Salaire")
-    private double salaire;
     @Lob
     @Column(name = "Disponibilite")
     private String disponibilite;
-    @OneToMany(mappedBy = "iDEmploye", fetch = FetchType.LAZY)
+    @Column(name = "Carte_Employe")
+    private String carteEmploye;
+    @OneToMany(mappedBy = "iDEmploye")
     private List<Horaire> horaireList;
 
-    // Constructeur par défaut nécessaire pour EclipseLink
     public Employe() {
     }
 
-    // Constructeur avec tous les champs
-    public Employe(String nom, String prenom, String poste, double salaire) {
+    public Employe(Integer iDEmploye) {
+        this.iDEmploye = iDEmploye;
+    }
+
+    public Employe(String nom, String prenom, String poste, int salaire) {
         this.nom = nom;
         this.prenom = prenom;
         this.poste = poste;
         this.salaire = salaire;
-        this.dateEmbauche = new Date(); // Date actuelle
-        this.disponibilite = "Disponible";
+        this.dateEmbauche = new Date();
+        this.disponibilite = "non disponible";
+        
     }
 
     public Integer getIDEmploye() {
@@ -118,22 +125,25 @@ public class Employe implements Serializable {
         this.dateEmbauche = dateEmbauche;
     }
 
-    public double getSalaire() {
-        return salaire;
+
+    public String getDisponibilite() {
+        return disponibilite;
+    }
+    public boolean isDisponible() {
+        return "disponible".equalsIgnoreCase(disponibilite);
     }
 
-    public void setSalaire(double salaire) {
-        this.salaire = salaire;
-    }
-
-    
-    
-    public boolean getDisponibilite() {
-        return "disponible".equalsIgnoreCase(this.disponibilite);
-    }
 
     public void setDisponibilite(String disponibilite) {
         this.disponibilite = disponibilite;
+    }
+
+    public String getCarteEmploye() {
+        return carteEmploye;
+    }
+
+    public void setCarteEmploye(String carteEmploye) {
+        this.carteEmploye = carteEmploye;
     }
 
     public List<Horaire> getHoraireList() {
@@ -167,6 +177,14 @@ public class Employe implements Serializable {
     @Override
     public String toString() {
         return "models.Employe[ iDEmploye=" + iDEmploye + " ]";
+    }
+
+    public int getSalaire() {
+        return salaire;
+    }
+
+    public void setSalaire(int salaire) {
+        this.salaire = salaire;
     }
     
 }

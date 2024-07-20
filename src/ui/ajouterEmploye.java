@@ -4,6 +4,7 @@
  */
 package ui;
 
+import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 import models.Employe;
 import service.employeService;
@@ -168,7 +169,7 @@ public class ajouterEmploye extends javax.swing.JFrame {
         }
 
         try {
-            double salaire = Double.parseDouble(salaireStr);
+            int salaire = parseInt(salaireStr);
 
             Employe employe = new Employe(nom, prenom, poste, salaire);
             es.addEmploye(employe);

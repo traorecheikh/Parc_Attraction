@@ -28,15 +28,25 @@ public class affecterEmploye extends javax.swing.JFrame {
     private final Employe selectedEmploye;
     private final List<Attraction> attractions;
     public affecterEmploye(Employe employe) {
-        initComponents();
-        setLocationRelativeTo(null);
         selectedEmploye = employe;
         attractions = as.getAllAttractions();
-        fillAttractionsComboBox();
-        displayEmployeInfo();
-        nomField.setEnabled(false);
-        prenomField.setEnabled(false);
-        horaireField.setEnabled(false); 
+       if (Session.getInstance().getUsername() == null) {
+            JOptionPane.showMessageDialog(this, "Vous devez etre connecter pour acceder a cette page", "Erreur", JOptionPane.ERROR_MESSAGE);
+            connexion loginPage = new connexion();
+            loginPage.setVisible(true);
+            this.dispose();
+        }
+       else
+       {
+            initComponents();
+            setLocationRelativeTo(null);
+            fillAttractionsComboBox();
+            displayEmployeInfo();
+            nomField.setEnabled(false);
+            prenomField.setEnabled(false);
+            horaireField.setEnabled(false); 
+           
+       }
     }
 
     /**
@@ -89,6 +99,11 @@ public class affecterEmploye extends javax.swing.JFrame {
         jLabel4.setText("attractions");
 
         jButton2.setText("Retour");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         prenomField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +178,7 @@ public class affecterEmploye extends javax.swing.JFrame {
     String selectedAttractionName = (String) attractionComboBox.getSelectedItem();
     Attraction selectedAttraction = as.getAttractionByNom(selectedAttractionName);
     boolean success = false;
-        if(selectedEmploye.getDisponibilite())
+        if(!selectedEmploye.isDisponible())
         {
             success = es.assignEmployeToAttraction(selectedEmploye, selectedAttraction);
         } 
@@ -171,6 +186,7 @@ public class affecterEmploye extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "employe affecter avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
         dispose();
     } else {
+            JOptionPane.showMessageDialog(this, "employe non affecter.", "Succès", JOptionPane.INFORMATION_MESSAGE);
     }
     }//GEN-LAST:event_validerButtonActionPerformed
 
@@ -181,6 +197,11 @@ public class affecterEmploye extends javax.swing.JFrame {
     private void prenomFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prenomFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_prenomFieldActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new listerEmploye().setVisible(rootPaneCheckingEnabled);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -189,10 +189,16 @@ public class ajoutAttraction extends javax.swing.JFrame {
         try {
             int capacite = parseInt(capaciteStr);
             int duree = parseInt(dureeStr);
-              if (!HorairesUtil.isValidHoraires(horField.getText())) {
-                    JOptionPane.showMessageDialog(null, "Horaires invalides. Veuillez utiliser le format 8h-16h.");
-                    return;
-                }
+            HorairesUtil hr = new HorairesUtil();
+        if (!hr.isValidHoraires(horaire)) {
+            JOptionPane.showMessageDialog(this, "Horaires invalides. Veuillez utiliser le format 8h-16h.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!hr.isShiftDurationValid(horaire)) {
+            JOptionPane.showMessageDialog(this, "La durée du shift ne doit pas dépasser 10 heures.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
             Attraction attraction = new Attraction(nom, description, capacite, duree, horaire);
             as.addAttraction(attraction);
@@ -200,13 +206,12 @@ public class ajoutAttraction extends javax.swing.JFrame {
             clearFields();
 
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Salaire doit être un nombre valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "duree doit être un nombre valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_validerButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        employeG empg = new employeG();
-        empg.setVisible(true);
+        new attractionG().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

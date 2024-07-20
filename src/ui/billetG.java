@@ -40,19 +40,11 @@ public class billetG extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
-        ajouterBillet = new javax.swing.JButton();
         listerBillet = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        ajouterBillet.setText("Ajouter Billet");
-        ajouterBillet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajouterBilletActionPerformed(evt);
-            }
-        });
 
         listerBillet.setText("Lister Billet");
         listerBillet.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +73,6 @@ public class billetG extends javax.swing.JFrame {
                         .addGap(281, 281, 281)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(listerBillet, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ajouterBillet, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(257, 257, 257)
@@ -94,12 +85,10 @@ public class billetG extends javax.swing.JFrame {
                 .addGap(73, 73, 73)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(ajouterBillet, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
                 .addComponent(listerBillet, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,12 +104,6 @@ public class billetG extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ajouterBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterBilletActionPerformed
-        ajoutBillet blt = new ajoutBillet();
-        blt.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_ajouterBilletActionPerformed
 
     private void listerBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listerBilletActionPerformed
         new listerBillet().setVisible(true);
@@ -169,7 +152,6 @@ public class billetG extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ajouterBillet;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel4;

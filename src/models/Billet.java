@@ -10,7 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,51 +32,39 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Billet.findByIDBillet", query = "SELECT b FROM Billet b WHERE b.iDBillet = :iDBillet"),
     @NamedQuery(name = "Billet.findByTypeBillet", query = "SELECT b FROM Billet b WHERE b.typeBillet = :typeBillet"),
     @NamedQuery(name = "Billet.findByPrix", query = "SELECT b FROM Billet b WHERE b.prix = :prix"),
-    @NamedQuery(name = "Billet.findByDateEmission", query = "SELECT b FROM Billet b WHERE b.dateEmission = :dateEmission"),
     @NamedQuery(name = "Billet.findByDateUtilisation", query = "SELECT b FROM Billet b WHERE b.dateUtilisation = :dateUtilisation"),
-    @NamedQuery(name = "Billet.findByEtat", query = "SELECT b FROM Billet b WHERE b.etat = :etat"),
-    @NamedQuery(name = "Billet.findByDateReservation", query = "SELECT b FROM Billet b WHERE b.dateReservation = :dateReservation"),
-    @NamedQuery(name = "Billet.findByHeureReservation", query = "SELECT b FROM Billet b WHERE b.heureReservation = :heureReservation")})
+    @NamedQuery(name = "Billet.findByEtat", query = "SELECT b FROM Billet b WHERE b.etat = :etat")})
 public class Billet implements Serializable {
+
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "Prix")
+    private int prix;
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID_Billet")
     private Integer iDBillet;
     @Column(name = "Type_Billet")
     private String typeBillet;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "Prix")
-    private int prix;
-    @Column(name = "Date_Emission")
-    @Temporal(TemporalType.DATE)
-    private Date dateEmission;
     @Column(name = "Date_Utilisation")
     @Temporal(TemporalType.DATE)
     private Date dateUtilisation;
     @Column(name = "Etat")
     private String etat;
-    @Column(name = "Date_Reservation")
-    @Temporal(TemporalType.DATE)
-    private Date dateReservation;
-    @Column(name = "Heure_Reservation")
-    @Temporal(TemporalType.TIME)
-    private Date heureReservation;
     @JoinColumn(name = "ID_Client", referencedColumnName = "ID_Client")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Client iDClient;
 
     public Billet() {
     }
 
-    public Billet(String type, int prix) {
-        this.typeBillet = type;
-        this.prix  = prix;
-        this.dateEmission = new Date();
-        this.heureReservation = null;
-        this.dateUtilisation = null;
-        this.etat = "Non Utilisé";
+    public Billet(String Type, int prix) {
+        this.dateUtilisation = new Date();
+        this.etat = "utilisé";
+        this.prix = prix;
+        this.typeBillet = Type;
     }
 
     public Integer getIDBillet() {
@@ -94,21 +83,6 @@ public class Billet implements Serializable {
         this.typeBillet = typeBillet;
     }
 
-    public int getPrix() {
-        return prix;
-    }
-
-    public void setPrix(int prix) {
-        this.prix = prix;
-    }
-
-    public Date getDateEmission() {
-        return dateEmission;
-    }
-
-    public void setDateEmission(Date dateEmission) {
-        this.dateEmission = dateEmission;
-    }
 
     public Date getDateUtilisation() {
         return dateUtilisation;
@@ -126,28 +100,12 @@ public class Billet implements Serializable {
         this.etat = etat;
     }
 
-    public Date getDateReservation() {
-        return dateReservation;
-    }
-
-    public void setDateReservation(Date dateReservation) {
-        this.dateReservation = dateReservation;
-    }
-
-    public Date getHeureReservation() {
-        return heureReservation;
-    }
-
-    public void setHeureReservation(Date heureReservation) {
-        this.heureReservation = heureReservation;
-    }
-
     public Client getIDClient() {
         return iDClient;
     }
 
-    public void setIDBillet(int IDBillet) {
-        this.iDBillet = IDBillet;
+    public void setIDClient(Client iDClient) {
+        this.iDClient = iDClient;
     }
 
     @Override
@@ -175,7 +133,12 @@ public class Billet implements Serializable {
         return "models.Billet[ iDBillet=" + iDBillet + " ]";
     }
 
-    public void setIDClient(Client iDClient) {
-        this.iDClient = iDClient;
+    public int getPrix() {
+        return prix;
     }
+
+    public void setPrix(int prix) {
+        this.prix = prix;
+    }
+    
 }

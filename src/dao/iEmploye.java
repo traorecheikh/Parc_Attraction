@@ -5,6 +5,7 @@
 package dao;
 
 import java.util.List;
+import models.Attraction;
 import models.Employe;
 import models.Horaire;
 
@@ -15,15 +16,14 @@ import models.Horaire;
 public interface iEmploye {
     void addEmploye(Employe employe);
 
-    // Read
     Employe getEmployeById(int employeId);
     List<Employe> getAllEmployes();
-
-    // Update
     public void updateEmploye(Employe employe);
-
-    // Delete
     public void deleteEmploye(int employeId);
     public List<Horaire> getAllHoraire();
+    public List<Horaire> getAllHoraireByEmployeId(int employeId);
+    public String generateCarteEmploye(String nom, String prenom);
+    public Employe getEmployeByCarteEmploye(String carteEmploye);
+    public boolean assignEmployeToAttraction(Employe employe, Attraction attraction);
     
 }

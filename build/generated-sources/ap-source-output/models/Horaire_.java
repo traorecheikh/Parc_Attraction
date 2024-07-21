@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import models.Attraction;
 import models.Employe;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-07-20T17:33:24", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-07-20T20:46:12", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Horaire.class)
 public class Horaire_ { 
 

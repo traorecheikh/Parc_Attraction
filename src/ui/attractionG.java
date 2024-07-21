@@ -122,7 +122,7 @@ public class attractionG extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void listerClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listerClientActionPerformed
-
+        new listerAttraction().setVisible(true);
         dispose();
     }//GEN-LAST:event_listerClientActionPerformed
 
